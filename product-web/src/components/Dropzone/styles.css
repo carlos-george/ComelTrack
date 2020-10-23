@@ -1,0 +1,46 @@
+#container-dropzone {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container-dropzone .dropzone {
+    width: 150px;
+    height: 150px;
+    background: #ddd;
+    border-radius: 10px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    outline: 0;
+  }
+  
+#container-dropzone .dropzone img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+  }
+  
+#container-dropzone .dropzone p {
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    border-radius: 10px;
+    border: 3px dashed #FCA90D;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #595969;
+    font-weight: bold;
+  }
+  
+#container-dropzone .dropzone p svg {
+    color: #FCA90D;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 8px;
+  }

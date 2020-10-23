@@ -1,0 +1,10 @@
+main {
+  flex: 1;
+  margin-top: 163px;
+}
+
+@media (max-width: 900px) {
+  main {
+    margin-top: 125px;
+  }
+}

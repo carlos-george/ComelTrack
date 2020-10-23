@@ -1,0 +1,12 @@
+{
+  "name": "product-mobile-expo",
+  "displayName": "product-mobile-expo",
+  "expo": {
+    "name": "product-mobile-expo",
+    "slug": "product-mobile-expo",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}

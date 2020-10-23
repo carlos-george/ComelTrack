@@ -1,0 +1,106 @@
+#container-home {
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container-home .home-logo {
+  height: 100px;
+}
+
+#container-home img {
+  height: 400px;
+}
+
+#container-home .detail-home {
+  padding: 40px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#container-home .detail-home h1 {
+  margin-top: 15px;
+  line-height: 35px;
+  letter-spacing: 2px;
+  font-size: 20px;
+  color: #8a8a8a;
+}
+
+#container-home .detail-home .home-buttons {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container-home .detail-home .home-buttons a {
+  width: 200px;
+  height: 80px;
+  border-radius: 8px;
+  border: 2px solid #fca90d;
+  background: none;
+  color: #fca90d;
+  font-weight: bold;
+  font-size: 24px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+#container-home .detail-home .home-buttons a:hover {
+  background-color: #fca90d;
+  color: #fff;
+}
+
+#container-home .detail-home .home-buttons a svg {
+  margin-left: 10px;
+}
+
+@media (max-width: 900px) {
+  #container-home {
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+  #container-home .detail-home {
+    width: 90%;
+    margin: 0;
+    padding: 10px;
+    align-items: center;
+  }
+  #container-home .detail-home h1 {
+    text-align: center;
+  }
+  #container-home img {
+    height: 200px;
+  }
+  #container-home .home-logo {
+    height: 70px;
+  }
+  #container-home .detail-home .home-buttons a + a {
+    margin-left: 15px;
+  }
+  #container-home .detail-home .home-buttons {
+    width: 85%;
+    padding: 5px;
+  }
+  #container-home .detail-home .home-buttons a {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #container-home .detail-home .home-buttons a svg {
+    height: 30px;
+    margin: 0;
+  }
+}

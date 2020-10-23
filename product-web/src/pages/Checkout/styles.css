@@ -1,0 +1,271 @@
+#container-checkout {
+    max-width: 730px;
+    height: 100%;
+    margin: 15px auto;
+    padding: 15px;
+    display: flex;
+    background: #FFF;
+    border-radius: 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#container-checkout form {
+    width: 100%;
+  
+    display: flex;
+    flex-direction: column;
+  }
+
+#container-checkout .list-mercadorias-disabled {
+    display: none;
+}
+
+#container-checkout .list-mercadorias {
+    width: 100%;
+    display: flex;
+}
+
+#container-checkout fieldset {
+    width: 100%;
+    
+    min-inline-size: auto;
+    border: 0;
+  }
+  
+#container-checkout legend {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#container-checkout legend h2 {
+    font-size: 24px;
+}
+
+#container-checkout legend span {
+    font-size: 14px;
+    font-weight: normal;
+    color: var(--text-color);
+}
+
+#container-checkout form .field-group {
+    flex: 1;
+    display: flex;
+}
+
+#container-checkout form .field {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+#container-checkout form .field input[type=text] {
+    flex: 1;
+    background: #ddd;
+    border-radius: 8px;
+    border: 0;
+    padding: 10px 18px;
+    font-size: 16px;
+    color: #595969;
+}
+
+#container-checkout form .field input[type=text]:focus { 
+
+    border: 1px solid #FCA90D;
+}
+
+#container-checkout form .field input::placeholder {
+    color: #A0A0B2;
+  }
+  
+#container-checkout form .field label {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+#container-checkout form .field :disabled {
+    cursor: not-allowed;
+}
+
+#container-checkout form .field-group .field + .field {
+    margin-left: 24px;
+}
+
+#container-checkout form .field-group input + input {
+    margin-left: 24px;
+}
+
+#container-checkout form button {
+    width: 70px;
+    height: 39px;
+    border-radius: 5px;
+    border: 2px solid #FCA90D;
+    background-color: #585858;
+    color: #FCA90D;
+    margin-top: 24px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+#container-checkout form button svg {
+    width: 25px;
+    height: 25px;
+}
+  
+#container-checkout form button:hover {
+    background-color: #FCA90D;
+    color: #fff;
+}
+
+#container-checkout .list-mercadorias .product-list {
+    width: 100%;
+    margin: 15px auto;
+}
+
+#container-checkout .list-mercadorias .product-list article {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+}
+
+#container-checkout .list-mercadorias  .product-list article .card-header {
+
+    height: 50px;
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    border-end-end-radius: 5px;
+    color: #2A3766;
+}
+
+#container-checkout .list-mercadorias .product-list article .card-content { 
+    
+    padding: 20px;
+}
+#container-checkout .list-mercadorias .product-list article .card-content .buttons-content {
+    display: flex;
+    flex-direction: row;
+} 
+
+#container-checkout .list-mercadorias .product-list article .card-content p {
+    font-size: 16px;
+    color: #999;
+    margin-top: 5px;
+    line-height: 24px;
+}
+
+#container-checkout .list-mercadorias .product-list article .card-content a {
+    width: 130px;
+    height: 42px;
+    border-radius: 5px;
+    border: 2px solid #FCA90D;
+    background: none;
+    margin-top: 10px;
+    margin-right: 10px;
+    color: #FCA90D;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+#container-checkout .list-mercadorias .product-list article .card-content a:hover { 
+    background-color: #FCA90D;
+    color: #fff;
+}
+
+#container-checkout .list-mercadorias .product-list article .card-content a svg { 
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+#container-checkout .list-mercadorias .product-list article .card-content .checkout { 
+    width: 130px;
+    height: 42px;
+    border: 2px solid #2FB86E;
+    border-radius: 5px;
+    background: none;
+    margin-top: 10px;
+    color: #2FB86E;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+#container-checkout .list-mercadorias .product-list article .card-content .checkout svg {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+} 
+
+#container-checkout .actions-disabled { 
+    display: none;
+}
+
+#container-checkout .actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#container-checkout .actions button { 
+    width: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 0;
+    background: #FCA90D;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#container-checkout .actions button:hover { 
+    opacity: 0.7;
+}
+
+#container-checkout .actions button[disabled] { 
+    opacity: 0.5;
+    cursor: default;
+}
+
+#container-checkout .actions button[disabled]:hover {
+    opacity: 0.5;
+} 
+
+@media(max-width: 900px) { 
+
+    #container-checkout form .field-group { 
+        flex-direction: column;
+    }
+
+    #container-checkout form .field-group .field + .field {
+        margin-left: 0px;
+    }
+
+    #container-checkout form button {
+        width: 100%;
+        height: 39px;
+        margin: 10px auto;
+    }
+    
+}

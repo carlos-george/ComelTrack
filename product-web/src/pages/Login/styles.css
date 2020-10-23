@@ -1,0 +1,129 @@
+#login-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-container .login-header {
+  width: 350px;
+  margin-bottom: 50px;
+}
+
+#login-container .login-header button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 0;
+}
+
+#login-container .login-header button strong {
+  font-size: 16px;
+}
+
+#login-container .login-header button:hover {
+  color: #fca90d;
+}
+
+#login-container .login-header button svg {
+  margin-right: 5px;
+}
+
+#login-container .login-main-container {
+  width: 350px;
+  background: #fff;
+  padding: 30px 0;
+  border-radius: 15px;
+}
+
+#login-container fieldset {
+  border: 0;
+  padding: 0 10px;
+}
+
+#login-container fieldset legend {
+  font: 700 2.8rem Archivo;
+  color: var(--color-text-title);
+  margin-bottom: 15px;
+  width: 100%;
+  padding-bottom: 1.6rem;
+  border-bottom: 2px solid var(--color-line-in-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-container fieldset form button {
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  border: 2px solid #fca90d;
+  background-color: #585858;
+  color: #fca90d;
+  margin-top: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+#login-container fieldset form button:hover {
+  background-color: #fca90d;
+  color: #fff;
+}
+
+#login-container fieldset form .field {
+  position: relative;
+  width: 100%;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+#login-container fieldset form .field svg {
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  cursor: pointer;
+  color: #fca90d;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+#login-container fieldset form .field input[type="text"],
+#login-container fieldset form .field input[type="password"] {
+  flex: 1;
+  background: #ddd;
+  border-radius: 8px;
+  border: 0;
+  padding: 10px 18px;
+  font-size: 16px;
+  color: #595969;
+}
+
+#login-container fieldset form .field input[type="text"]:focus,
+#login-container fieldset form .field input[type="password"]:focus {
+  border: 1px solid #fca90d;
+}
+
+#login-container fieldset form .field input::placeholder {
+  color: #a0a0b2;
+}
+
+#login-container fieldset form .field label {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+#login-container fieldset form .field :disabled {
+  cursor: not-allowed;
+}
