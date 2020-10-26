@@ -19,7 +19,6 @@ class PackageController {
     async index(request: Request, response: Response) {
 
         const { page = 1, destinationName, trackerNumber } = request.query;
-
         const { data, pagination } = await db('packages')
             .where(function () {
                 if (trackerNumber) {

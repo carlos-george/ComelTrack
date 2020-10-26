@@ -4,7 +4,7 @@ import './styles.css';
 
 const Footer = () => {
     return (
-        <footer id="main-footer">Contact Us</footer>
+        <footer id="main-footer">ComelTrack</footer>
     );
 }
 

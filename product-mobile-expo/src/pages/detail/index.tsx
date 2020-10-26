@@ -7,7 +7,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import api from '../../services/api';
 
 interface Package {
-  _id: string;
+  id: string;
   trackerNumber: string;
   description: string;
   status: number;
@@ -15,67 +15,67 @@ interface Package {
 }
 
 interface Params {
-    id: number;
-    data: string;
-  }
+  id: number;
+  data: string;
+}
 
 interface QrCodeData {
   protocol: string;
   trackerNumber: string;
 }
 
-const Detail = () => {
-  
-    const { navigate, goBack } = useNavigation();
-    const route = useRoute<RouteProp<ParamListBase, string>>();
-    const { id, data } = route.params as Params;
-    const [ userPackage, setUserPackage ] = useState<Package>({} as Package);
-    const [ qrCodeData, setQrCodeData ] = useState<QrCodeData>({} as QrCodeData);
+function Detail() {
 
-    useEffect(() => {
-        api.get(`packages/${id}`).then(res => {
-            setUserPackage(res.data);
-        }).catch(error => {
-          if(error.response) {
-            alert(error.response.data.message);
-          }
-        })
+  const { navigate } = useNavigation();
+  const route = useRoute();
+  const { id, data } = route.params as Params;
+  const [userPackage, setUserPackage] = useState<Package>({} as Package);
+  const [qrCodeData, setQrCodeData] = useState<QrCodeData>({} as QrCodeData);
 
-    }, [id]);
-
-    useEffect(() => {
-      if(data) {
-
-        const dataDesc = data.split(';');
-  
-        setQrCodeData({
-          protocol: dataDesc[0],
-          trackerNumber: dataDesc[1]
-        });
+  useEffect(() => {
+    api.get(`packages/${id}`).then(res => {
+      setUserPackage(res.data);
+    }).catch(error => {
+      if (error.response) {
+        alert(error.response.data.message);
       }
+    });
 
-    }, [data]);
+  }, [id]);
 
-    return (
-      <SafeAreaView>
-            <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}>
-                <Text style={styles.title}>{userPackage.trackerNumber}</Text>
-                <Text style={styles.description}>{userPackage.description}</Text>
-                <View style={styles.containerData}>
-                  {/* <Image style={styles.image}
+  useEffect(() => {
+    if (data) {
+
+      const dataDesc = data.split(';');
+
+      setQrCodeData({
+        protocol: dataDesc[0],
+        trackerNumber: dataDesc[1]
+      });
+    }
+
+  }, [data]);
+
+  return (
+    <SafeAreaView>
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+        <Text style={styles.title}>{userPackage.trackerNumber}</Text>
+        <Text style={styles.description}>{userPackage.description}</Text>
+        <View style={styles.containerData}>
+          {/* <Image style={styles.image}
                         source={{uri: userPackage.urlImage}}
                   /> */}
-                  <TouchableOpacity onPress={() => navigate('Scanner')}>
-                    <Image style={styles.image} source={require('../../assets/qrCodeIcon.png')}/>
-                  </TouchableOpacity>
-                </View>
-            </View>
-      </SafeAreaView>      
-    );
+          <TouchableOpacity onPress={() => navigate('Scanner')}>
+            <Image style={styles.image} source={require('../../assets/qrCodeIcon.png')} />
+          </TouchableOpacity>
+        </View>
+      </View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
