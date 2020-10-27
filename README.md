@@ -37,7 +37,10 @@ O ComelTrack é uma aplicação que vai auxiliar os condomínios a terem um melh
 
 ## 🔖 Layout
 
+Nos links abaixo você encontra o layout do projeto web e também do mobile. Lembrando que você precisa ter uma conta no [Figma](http://figma.com/) para acessá-lo.
 
+- [Layout Web](https://www.figma.com/file/CF5nMCdy1MauNWG7VMku95/ComelTrack-Web?node-id=0%3A1)
+- [Layout Mobile](https://www.figma.com/file/B4oBoaB7wHirJzPeAA7I2a/ComelTrack-Mobile?node-id=0%3A1)
 
 ## :memo: Licença
 
