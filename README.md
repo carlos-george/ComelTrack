@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="ComelTrack" title="Happy" src=".github/logoWeb.svg" />
+    <img alt="ComelTrack" title="ComelTrack" src=".github/logoWeb.png" width="300" height="85"/>
 </h1>
 
 <p align="center">
