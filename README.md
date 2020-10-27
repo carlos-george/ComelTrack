@@ -1,5 +1,5 @@
 <h1 align="center">
-ComelTrack
+    <img alt="ComelTrack" title="Happy" src=".github/logoWeb.svg" />
 </h1>
 
 <p align="center">
@@ -18,7 +18,7 @@ ComelTrack
 <br>
 
 <p align="center">
-  <img alt="Happy" src=".github/land.png" width="100%">
+  <img alt="ComelTrack" src=".github/mockup.png" width="100%">
 </p>
 
 ## 🚀 Tecnologias
