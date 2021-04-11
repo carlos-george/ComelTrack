@@ -63,8 +63,10 @@ function Detail() {
           justifyContent: 'center',
           alignItems: 'center'
         }}>
-        <Text style={styles.title}>{userPackage.trackerNumber}</Text>
-        <Text style={styles.description}>{userPackage.description}</Text>
+        {/* <Text style={styles.title}>{userPackage.trackerNumber}</Text> */}
+        <Text style={styles.title}>OK544966528BR</Text>
+        {/* <Text style={styles.description}>{userPackage.description}</Text> */}
+        <Text style={styles.description}>Computador Descktop</Text>
         <View style={styles.containerData}>
           {/* <Image style={styles.image}
                         source={{uri: userPackage.urlImage}}

@@ -15,7 +15,7 @@ const storageTypes = {
         },
         filename(request, file, callback) {
 
-            const hash = crypto.randomBytes(16).toString('hex');
+            const hash = crypto.randomBytes(10).toString('hex');
 
             file.filename = `${hash}-${file.originalname}`;
 
@@ -28,7 +28,7 @@ const storageTypes = {
         contentType: multerS3.AUTO_CONTENT_TYPE,
         acl: 'public-read',
         key: (req, file, cb) => {
-            const hash = crypto.randomBytes(16).toString('hex');
+            const hash = crypto.randomBytes(10).toString('hex');
 
             file.filename = `${hash}-${file.originalname}`;
 
@@ -49,7 +49,7 @@ export default {
             "image/pjpeg",
             "image/png",
         ];
-        if(allawedMimes.includes(file.mimetype)) {
+        if (allawedMimes.includes(file.mimetype)) {
             cb(null, true);
         } else {
             cb(new Error('Invalid file type.'));

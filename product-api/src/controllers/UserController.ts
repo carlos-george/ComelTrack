@@ -1,19 +1,12 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
 import { Request, Response } from 'express';
+import { getRepository } from 'typeorm';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import * as Yup from 'yup';
 
-import db from '../config/database/connection';
-
-interface UserModel {
-    id: number;
-    name: string;
-    email: string;
-    password: string;
-    whatsapp: string;
-}
+import User from '../entities/User';
+import Role from '../entities/Role';
+import UserView from '../views/UserView';
 
 const generateToken = (params = {}) => {
     return jwt.sign(params,
@@ -23,61 +16,86 @@ const generateToken = (params = {}) => {
         });
 }
 
-class UserController {
+export default {
+    async index(request: Request, response: Response) {
 
+        const userRepository = getRepository(User);
+
+        const users = await userRepository.find({
+            relations: ['usersroles', 'usersroles.role']
+        });
+
+        return response.json(UserView.renderMany(users));
+    },
 
     async register(request: Request, response: Response) {
 
-        const { name, email, password, whatsapp } = request.body;
+        const userRepository = getRepository(User);
+        const roleRepository = getRepository(Role);
+
+        const { name, email, password } = request.body;
 
         const passHash = await bcrypt.hash(password, 10);
 
-        const trx = await db.transaction();
-
-        const users = await trx('users').where('users.email', '=', email);
+        const users = await userRepository.find({
+            where: [
+                {
+                    email
+                }
+            ]
+        });
 
         if (users[0]) return response.status(400)
             .json({
                 message: 'Usuário já existente no sistema.'
             });
 
-        try {
 
-            const userIds = await trx('users').insert({ name, email, password: passHash, whatsapp });
+        const role = await roleRepository.findOne(2);
 
-            const roles = await trx('roles').where('roles.name', '=', 'USER');
+        const data = {
+            name,
+            email,
+            password: passHash,
+            usersroles: [
+                {
+                    role
+                }
+            ]
+        };
 
-            await trx('users_roles').insert({
-                user_id: userIds[0],
-                role_id: roles[0].id
-            })
+        const schema = Yup.object().shape({
+            name: Yup.string().required(),
+            email: Yup.string().required().email(),
+            password: Yup.string().required(),
+        });
 
-            const newUsers = await trx('users').where('users.id', '=', userIds[0]).select('*');
+        await schema.validate(data, {
+            abortEarly: false,
+        });
 
-            const newUser: UserModel = newUsers[0];
+        const user = await userRepository.create(data);
 
-            newUser.password = '';
+        await userRepository.save(user);
 
-            trx.commit();
+        return response.status(201).json({ user: UserView.render(user), token: generateToken({ id: user.id }) });
 
-            return response.json({ newUser, token: generateToken({ id: newUser.id }) });
-
-        } catch (error) {
-
-            console.log(error);
-            await trx.rollback();
-
-            return response.status(400).json({
-                error: 'Erro inesperado ao cadatrar novo usuário.'
-            });
-        }
-
-    }
+    },
 
     async authenticate(request: Request, response: Response) {
+
+        const userRepository = getRepository(User);
+
         const { email, password } = request.body;
 
-        const users = await db('users').where('users.email', '=', email);
+        const users = await userRepository.find({
+            relations: ['usersroles', 'usersroles.role'],
+            where: [
+                {
+                    email
+                }
+            ]
+        });
 
         const user = users[0];
 
@@ -89,56 +107,6 @@ class UserController {
         if (!await bcrypt.compare(password, user.password))
             return response.status(400).json({ message: 'Senha inválida para o usuário.' });
 
-        user.password = undefined;
-
-        return response.json({ user, token: generateToken({ id: user._id }) });
+        return response.json({ user: UserView.render(user), token: generateToken({ id: user.id }) });
     }
-
-    // async createPackage(request: CustomRequest, response: Response) {
-    //     const { id } = request.user;
-    //     const { trackerNumber, description } = request.body;
-    //     const user = await User.findById(id);
-
-    //     if (!user) return response.status(400).json({ message: 'Usuário não encontrado.' });
-
-    //     const product: any = await Product.findOne({ trackerNumber });
-
-    //     let status = 0;
-    //     let urlImage = '';
-
-    //     if (product) {
-    //         status = 1;
-    //         urlImage = product.urlImage;
-    //     }
-
-    //     const userPackage = await Package.create({ trackerNumber, description, status, urlImage, owner: user._id });
-
-    //     await user.updateOne({ packages: [userPackage._id] });
-
-    //     return response.json(userPackage);
-    // }
-
-    // async listPackages(request: CustomRequest, response: Response) {
-
-    //     const { id: owner } = request.user;
-    //     const { page = 1 } = request.query;
-
-    //     const packages = await Package.paginate({ owner }, { page: Number(page), limit: 10 });
-
-    //     return response.json(packages);
-    // }
-
-    // async showPackage(request: Request, response: Response) {
-
-    //     const { id } = request.params;
-
-    //     const userPackage = await Package.findById(id);
-
-    //     if (!userPackage) return response.status(400).json({ message: 'Encomenda não encontrada.' });
-
-    //     return response.json(userPackage);
-    // }
-
 }
-
-export default UserController;

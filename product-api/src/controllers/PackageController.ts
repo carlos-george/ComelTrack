@@ -6,7 +6,7 @@ import { promisify } from 'util';
 
 const s3 = new aws.S3();
 
-import db from '../config/database/connection';
+import db from '../config/database/connection_knex';
 
 enum Status {
     RECEIVED = 'received',
@@ -57,9 +57,18 @@ class PackageController {
             observation
         } = request.body;
 
+        console.log('TrackerNumber: ', trackerNumber);
+
         const { filename: imageKey } = request.file;
 
-        const urlImage = `${process.env.APP_URL}/uploads/${imageKey}`;
+        let urlImage = '';
+
+        if (process.env.STORAGE_TYPE === 's3') {
+
+            urlImage = `${process.env.APP_URL}/${imageKey}`;
+        } else {
+            urlImage = `${process.env.APP_URL}/uploads/${imageKey}`;
+        }
 
         const trx = await db.transaction();
 
