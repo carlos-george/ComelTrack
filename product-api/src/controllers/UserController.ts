@@ -37,7 +37,7 @@ export default {
 
         const passHash = await bcrypt.hash(password, 10);
 
-        const users = await userRepository.find({
+        const userExists = await userRepository.findOne({
             where: [
                 {
                     email
@@ -45,7 +45,7 @@ export default {
             ]
         });
 
-        if (users[0]) return response.status(400)
+        if (userExists) return response.status(400)
             .json({
                 message: 'Usuário já existente no sistema.'
             });
@@ -74,7 +74,7 @@ export default {
             abortEarly: false,
         });
 
-        const user = await userRepository.create(data);
+        const user = userRepository.create(data);
 
         await userRepository.save(user);
 
